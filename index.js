@@ -1,5 +1,6 @@
-const head   = require('./head');
-const tail   = require('./tail');
+// Import the individual functions from their respective files
+const head = require('./head');
+const tail = require('./tail');
 const middle = require('./middle');
 const eqArrays = require('./eqArrays');
 const countLetters = require('./countLetters');
@@ -10,12 +11,12 @@ const takeUntil = require('./takeUntil');
 const without = require('./without');
 const findKey = require('./findKey');
 const findKeyByValue = require('./findKeyByValue');
-const letterPoisitions = require('./letterPoisitions');
+const letterPositions = require('./letterPositions');
 const assertEqual = require('./assertEqual');
 const assertArraysEqual = require('./assertArraysEqual');
-const assertObjectsEqual = require('./assertObjectsEqual')
+const assertObjectsEqual = require('./assertObjectsEqual');
 
-
+// Export an object containing all the functions
 module.exports = {
   head,
   tail,
@@ -28,9 +29,10 @@ module.exports = {
   takeUntil,
   without,
   findKey,
-  findKeyByValue, 
-  letterPoisitions,
+  findKeyByValue,
+  letterPositions,
   assertEqual,
   assertArraysEqual,
   assertObjectsEqual
 };
+

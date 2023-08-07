@@ -1,58 +1,29 @@
-const eqArrays = function(arr1, arr2) {
-    if (arr1.length !== arr2.length) {
-      return false;
-    }
-    for (let i = 0; i < arr1.length; i++) {
-      if (arr1[i] !== arr2[i]) {
-        return false;
-      }
-    }
-    return true;
-  };
+// Import the eqObjects function to compare objects for equality
+const eqObjects = require('./eqObjects');
+
+// Define the assertObjectsEqual function to compare and log assertions
+const assertObjectsEqual = function(actual, expected) {
+  // Use the eqObjects function to compare the actual and expected objects
+  const isEqual = eqObjects(actual, expected);
   
-  const eqObjects = function(object1, object2) {
-    const keys1 = Object.keys(object1);
-    const keys2 = Object.keys(object2);
-  
-    if (keys1.length !== keys2.length) {
-      return false;
-    }
-  
-    for (const key of keys1) {
-      const val1 = object1[key];
-      const val2 = object2[key];
-  
-      if (Array.isArray(val1) && Array.isArray(val2)) {
-        if (!eqArrays(val1, val2)) {
-          return false;
-        }
-      } else if (typeof val1 === 'object' && typeof val2 === 'object') {
-        if (!eqObjects(val1, val2)) {
-          return false;
-        }
-      } else if (val1 !== val2) {
-        return false;
-      }
-    }
-  
-    return true;
-  };
-  
-  const assertObjectsEqual = function(actual, expected) {
-    const inspect = require('util').inspect;
-    if (eqObjects(actual, expected)) {
-      console.log(`✅✅✅ Assertion Passed: ${inspect(actual)} === ${inspect(expected)}`);
-    } else {
-      console.log(`🛑🛑🛑 Assertion Failed: ${inspect(actual)} !== ${inspect(expected)}`);
-    }
-  };
-  
-  // Test cases
-  const obj1 = { a: '1', b: 2 };
-  const obj2 = { b: 2, a: '1' };
-  const obj3 = { a: '1', b: 2, c: [1, 2, 3] };
-  const obj4 = { a: '1', b: 2, c: [1, 2, 3] };
-  
-  assertObjectsEqual(obj1, obj2); // Pass
-  assertObjectsEqual(obj3, obj4); // Pass
-  assertObjectsEqual(obj1, obj3); // Fail
+  // Check if the objects are equal and log the appropriate message
+  if (isEqual) {
+    console.log(`✅ Assertion Passed: ${JSON.stringify(actual)} === ${JSON.stringify(expected)}`);
+  } else {
+    console.log(`❌ Assertion Failed: ${JSON.stringify(actual)} !== ${JSON.stringify(expected)}`);
+  }
+};
+
+// Example test cases (commented out for now)
+// const obj1 = {a: 1, b: 2, c: [1, 2, 3]};
+// const obj2 = {c: [1, 2, 3], b: 2, a: 1};
+// const obj3 = {a: 1, b: 2, c: [1, 2, 3], d: 4};
+// const obj4 = {a: 1, b: 2, c: [1, 2, 4]};
+
+// Perform assertions for the example test cases
+// assertObjectsEqual(obj1, obj2); // should log "Assertion Passed: { a: 1, b: 2, c: [ 1, 2, 3 ] } === { a: 1, b: 2, c: [ 1, 2, 3 ] }"
+// assertObjectsEqual(obj1, obj3); // should log "Assertion Failed: { a: 1, b: 2, c: [ 1, 2, 3 ] } !== { a: 1, b: 2, c: [ 1, 2, 3 ], d: 4 }"
+// assertObjectsEqual(obj1, obj4); // should log "Assertion Failed: { a: 1, b: 2, c: [ 1, 2, 3 ] } !== { a: 1, b: 2, c: [ 1, 2, 4 ] }"
+
+// Export the assertObjectsEqual function for use in other modules
+module.exports = assertObjectsEqual;
