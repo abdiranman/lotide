@@ -1,3 +1,7 @@
 const assertEqual = require('../assertEqual');
 
-module.exports = assertEqual;
+//TEst Code
+assertEqual("Lighthouse Labs", "Bootcamp");
+assertEqual(1, 1);
+
+
