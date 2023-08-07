@@ -18,10 +18,8 @@ const eqArrays = function(array1, array2) {
       console.log(`❌ Assertion Failed: [${actual}] !== [${expected}]`);
     }
   };
+
+  module.exports = assertArraysEqual;
   
   
-  // Test Cases
-  assertArraysEqual([1, 2, 3], [1, 2, 3]);
-  assertArraysEqual([1, 2, 3], [3, 2, 1]);
-  assertArraysEqual(["1", "2", "3"], ["1", "2", "3"]);
-  assertArraysEqual(["1", "2", "3"], ["1", "2", 3]);
+  
